@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:12:50 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/21 11:37:23 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/23 13:22:51 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	up(t_all *all)
 		all->map[all->yplayer - 1][all->xplayer] = 'P';
 		all->map[all->yplayer][all->xplayer] = '0';
 	}
-	ft_putnbr_fd(all->mini->movs, 1);
+	ft_putnbr_fd(all->mini.movs, 1);
 	ft_putstr_fd(": up\n", 1);
-	all->mini->movs++;
+	all->mini.movs++;
 }
 
 void	down(t_all *all)
@@ -59,9 +59,9 @@ void	down(t_all *all)
 		all->map[all->yplayer + 1][all->xplayer] = 'P';
 		all->map[all->yplayer][all->xplayer] = '0';
 	}
-	ft_putnbr_fd(all->mini->movs, 1);
-	ft_putstr_fd(": down\n", 1);
-	all->mini->movs++;
+	ft_putnbr_fd(all->mini.movs, 1);
+	ft_putstr_fd(" : down\n", 1);
+	all->mini.movs++;
 }
 
 void	right(t_all *all)
@@ -85,9 +85,9 @@ void	right(t_all *all)
 		all->map[all->yplayer][all->xplayer + 1] = 'P';
 		all->map[all->yplayer][all->xplayer] = '0';
 	}
-	ft_putnbr_fd(all->mini->movs, 1);
-	ft_putstr_fd(": right\n", 1);
-	all->mini->movs++;
+	ft_putnbr_fd(all->mini.movs, 1);
+	ft_putstr_fd(" : right\n", 1);
+	all->mini.movs++;
 }
 
 void	left(t_all *all)
@@ -108,12 +108,12 @@ void	left(t_all *all)
 	}
 	else
 	{
-		all->map[all->yplayer - 1][all->xplayer - 1] = 'P';
+		all->map[all->yplayer][all->xplayer - 1] = 'P';
 		all->map[all->yplayer][all->xplayer] = '0';
 	}
-	ft_putnbr_fd(all->mini->movs, 1);
-	ft_putstr_fd(": left\n", 1);
-	all->mini->movs++;
+	ft_putnbr_fd(all->mini.movs, 1);
+	ft_putstr_fd(" : left\n", 1);
+	all->mini.movs++;
 }
 
 int	ft_keyboard(int key, t_all *all)
@@ -140,6 +140,6 @@ int	ft_keyboard(int key, t_all *all)
 	}
 	if (key == 53)
 		exit(0);
+	ft_show_map(all);
 	return (0);
 }
-	// ft_show_in_all(all);

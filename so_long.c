@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:16:09 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/21 17:56:17 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/23 16:28:33 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void	ft_find_exit(t_all *all)
 		while (all->xexit < all->xsize - 1)
 		{
 			if (all->map[all->yexit][all->xexit] == 'P')
-			{
-				printf("xexit >>> %d\n", all->xexit);
-				printf("yexit >>> %d\n", all->yexit);
 				return ;
-			}
 			all->xexit++;
 		}
 		all->yexit++;
@@ -41,11 +37,7 @@ void	ft_find_player(t_all *all)
 		while (all->xplayer < all->xsize - 1)
 		{
 			if (all->map[all->yplayer][all->xplayer] == 'P')
-			{
-				printf("xplayer >>> %d\n", all->xplayer);
-				printf("yplayer >>> %d\n", all->yplayer);
 				return ;
-			}
 			all->xplayer += 1;
 		}
 		all->yplayer += 1;
@@ -67,20 +59,14 @@ int	main(int argc, char **argv)
 	ft_find_player(&all);
 	ft_find_exit(&all);
 	ft_go_to_exit(&all);
-	all.mini->mlx = mlx_init();
-	all.mini->mlx_win = mlx_new_window(all.mini->mlx,
-			500, 500, "so_long");
-	mlx_loop(all.mini->mlx);
-	int	z = 0;
-	printf("\n");
-	while (all.map[z])
-	{
-		printf("all->map[%d] -> %s", z, all.map[z]);
-		z++;
-	}
-	printf("\nxsize === %d\n", all.xsize);
-	printf("ysize === %d\n", all.ysize);
+	all.mini.mlx = mlx_init();
+	all.mini.mlx_win = mlx_new_window(all.mini.mlx,
+			(all.xsize * 58), (all.ysize * 60), "so_long");
+	mlx_hook(all.mini.mlx_win, 2, 0, ft_keyboard, &all);
+	ft_show_map(&all);
+	mlx_hook(all.mini.mlx_win, 17, 0 , (int (*)())quit, &all);
+	mlx_loop(all.mini.mlx);
 	return (0);
 }
 
-	//system("leaks so_long");
+	// system("leaks so_long");

@@ -1,6 +1,6 @@
 SRCS = so_long.c check_argv.c ft_verif_map.c \
 		ft_sl_split.c ft_verif_elem.c ft_go_to_exit.c \
-		ft_keyboard.c \
+		ft_keyboard.c ft_show_map.c ft_images_utils.c \
 		get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}
@@ -19,8 +19,8 @@ make :
 	@${MAKE} -C ./libft
 
 $(NAME) : make
-	@$(GCC) $(HEAD) ${SRCS} -Lmlx -lmlx -framework AppKit -framework OpenGL -L ./libft -lft -o ${NAME}
--fsanitize=address -g
+	@$(GCC) $(HEAD) ${SRCS} -g -L. -lmlx -framework AppKit -framework OpenGL -L ./libft -lft -o ${NAME}
+ -fsanitize=address
 clean :
 	@rm -f $(OBJS)
 	@$(MAKE) clean -C ./libft

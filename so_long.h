@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:36:52 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/21 11:42:56 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/23 16:10:12 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_data
 	int		count_c;
 	int		count_p;
 	int		count_e;
+	int		x;
+	int		y;
+	int		i;
+	int		j;
 }	t_data;
 
 typedef struct s_mini
@@ -37,9 +41,9 @@ typedef struct s_mini
 	void	*ground;
 	void	*walls;
 	void	*coins;
+	void	*closedexit;
+	void	*openexit;
 	int		movs;
-	int		x;
-	int		y;
 }	t_mini;
 
 typedef struct s_all
@@ -53,8 +57,8 @@ typedef struct s_all
 	int		xexit;
 	int		yexit;
 	int		nmb_of_coll;
+	t_mini	mini;
 	t_data	data;
-	t_mini	*mini;
 }	t_all;
 
 char	**ft_sl_split(char *s, char c);
@@ -84,6 +88,16 @@ void	down(t_all *all);
 void	right(t_all *all);
 void	left(t_all *all);
 
+void	ft_show_map(t_all *all);
+void	ft_sprites(t_all *all);
+
+void	wall(t_all *all);
+void	ground(t_all *all);
+void	player(t_all *all);
+void	door(t_all *all);
+void	coins(t_all *all);
+
 void	ft_error(char *str);
+int		quit(t_all *all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:55:02 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/21 16:25:31 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/22 11:57:44 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@ static void	ft_if_players(t_all *all, int x, int y)
 	ft_if_players(all, x, y + 1);
 	return ;
 }
-
-// static void	ft_if_exit(t_all *all, int x, int y)
-// {
-// 	if (all->tmp[y][x] != '0' && all->tmp[y][x] != 'P'
-// 	&& all->tmp[y][x] != 'C')
-// 		return ;
-// 	all->tmp[y][x] = 'E';
-// 	ft_if_exit(all, x + 1, y);
-// 	ft_if_exit(all, x - 1, y);
-// 	ft_if_exit(all, x, y - 1);
-// 	ft_if_exit(all, x, y + 1);
-// 	return ;
-// }
 
 void	ft_verif_game(t_all *all)
 {
@@ -73,10 +60,4 @@ void	ft_go_to_exit(t_all *all)
 	}
 	all->tmp[i] = NULL;
 	ft_verif_game(all);
-	int	z = 0;
-	while (all->tmp[z])
-	{
-		printf("all->tmp[%d] -> %s", z, all->tmp[z]);
-		z++;
-	}
 }

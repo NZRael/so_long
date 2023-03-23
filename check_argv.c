@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 12:30:27 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/16 13:47:28 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/23 12:26:12 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,18 @@ void	ft_check_mapfile(char *mapfile)
 	ft_error("Map must be a file, and not a directory\n");
 }
 
+int	quit(t_all *all)
+{
+	// mlx_destroy_window(all->mini.mlx, all->mini.mlx_win);
+	free(all->mini.mlx);
+	exit(0);
+}
+
 void	ft_error(char *str)
 {
 	ft_putstr_fd("Error\n", 1);
 	ft_putstr_fd(str, 1);
 	exit(EXIT_FAILURE);
 }
-	//system("leaks so_long");
+
+	// system("leaks so_long");
