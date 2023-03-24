@@ -20,14 +20,19 @@ make :
 
 $(NAME) : make
 	@$(GCC) $(HEAD) ${SRCS} -g -L. -lmlx -framework AppKit -framework OpenGL -L ./libft -lft -o ${NAME}
- -fsanitize=address
+
+bonus :
+	@${MAKE} -C ./so_long_bonus
+
 clean :
 	@rm -f $(OBJS)
 	@$(MAKE) clean -C ./libft
+	@$(MAKE) clean -C ./so_long_bonus
 
 fclean : clean
 	@rm -f ${NAME}
-	@$(MAKE) fclean -C libft
+	@$(MAKE) fclean -C ./libft
+	@$(MAKE) fclean -C ./so_long_bonus
 
 re : fclean all
 

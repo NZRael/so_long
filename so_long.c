@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:16:09 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/23 16:28:33 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:03:55 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int	main(int argc, char **argv)
 			(all.xsize * 58), (all.ysize * 60), "so_long");
 	mlx_hook(all.mini.mlx_win, 2, 0, ft_keyboard, &all);
 	ft_show_map(&all);
-	mlx_hook(all.mini.mlx_win, 17, 0 , (int (*)())quit, &all);
+	mlx_hook(all.mini.mlx_win, 17, 0, (int (*)())quit, &all);
 	mlx_loop(all.mini.mlx);
 	return (0);
 }
-
-	// system("leaks so_long");

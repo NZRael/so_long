@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:12:50 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/23 13:22:51 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/24 15:55:09 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	up(t_all *all)
 {
+	ft_find_player(all);
 	if (all->map[all->yplayer - 1][all->xplayer] == '1')
 		return ;
 	if (all->map[all->yplayer - 1][all->xplayer] == 'E'
@@ -40,6 +41,7 @@ void	up(t_all *all)
 
 void	down(t_all *all)
 {
+	ft_find_player(all);
 	if (all->map[all->yplayer + 1][all->xplayer] == '1')
 		return ;
 	if (all->map[all->yplayer + 1][all->xplayer] == 'E'
@@ -66,6 +68,7 @@ void	down(t_all *all)
 
 void	right(t_all *all)
 {
+	ft_find_player(all);
 	if (all->map[all->yplayer][all->xplayer + 1] == '1')
 		return ;
 	if (all->map[all->yplayer][all->xplayer + 1] == 'E'
@@ -92,6 +95,7 @@ void	right(t_all *all)
 
 void	left(t_all *all)
 {
+	ft_find_player(all);
 	if (all->map[all->yplayer][all->xplayer - 1] == '1')
 		return ;
 	if (all->map[all->yplayer][all->xplayer - 1] == 'E'
@@ -120,22 +124,18 @@ int	ft_keyboard(int key, t_all *all)
 {
 	if (key == 126 || key == 13)
 	{
-		ft_find_player(all);
 		up(all);
 	}
 	if (key == 125 || key == 1)
 	{
-		ft_find_player(all);
 		down(all);
 	}
 	if (key == 124 || key == 2)
 	{
-		ft_find_player(all);
 		right(all);
 	}
 	if (key == 123 || key == 0)
 	{
-		ft_find_player(all);
 		left(all);
 	}
 	if (key == 53)

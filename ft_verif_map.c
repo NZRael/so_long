@@ -6,23 +6,60 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:02:00 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/17 11:53:25 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:02:59 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+char	*ft_sl_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	*p;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	p = malloc (ft_strlen(s1) + ft_strlen(s2) + 1 * sizeof (char));
+	if (!p)
+		return (NULL);
+	while (s1[i])
+		p[k++] = s1[i++];
+	while (s2[j])
+		p[k++] = s2[j++];
+	p[k] = '\0';
+	free (s1);
+	s1 = NULL;
+	return (p);
+}
+
 int	ft_get_nbr_line(char *argv)
 {
-	int	fd;
-	int	nbr_line;
+	int		fd;
+	int		nbr_line;
+	char	*line;
 
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Open file\n");
+	line = get_next_line(fd);
+	if (!line)
+	{
+		free(line);
+		ft_error("Empty File\n");
+	}
 	nbr_line = 0;
-	while (get_next_line(fd))
+	while (line)
+	{
+		free(line);
 		nbr_line++;
+		line = get_next_line(fd);
+	}
+	free(line);
 	if (nbr_line == 0)
 		ft_error("Empty File\n");
 	close(fd);
@@ -69,8 +106,6 @@ void	ft_verif_mapform(t_all *all)
 			ft_error("Map form invalid\n");
 		i++;
 	}
-	// printf("ft_strlen(all->map[%d])+1 >>>>>> %lu\n", i, (ft_strlen(all->map[i]) + 1));
-	// printf("ft_strlen(all->map[0]) >>>>>> %lu\n", ft_strlen(all->map[0]));
 	if ((ft_strlen(all->map[i]) + 1) != ft_strlen(all->map[0]))
 		ft_error("Map form invalid\n");
 	return ;
@@ -87,20 +122,16 @@ void	ft_map(t_all *all, char *argv)
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		ft_error("Open file\n");
-	line = get_next_line(fd);
-	if (!line)
-		return (free(line));
-	while (line)
+	while (i < all->ysize)
 	{
+		line = get_next_line(fd);
 		tmp = ft_strdup(line);
 		free(line);
-		all->map[i] = tmp;
-		line = get_next_line(fd);
+		all->map[i] = ft_strdup(tmp);
+		free(tmp);
 		i++;
 	}
 	all->xsize = ft_strlen(all->map[0]);
-	all->ysize = i;
 	all->map[i] = NULL;
 	close(fd);
-	return ;
 }

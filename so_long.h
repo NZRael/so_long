@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:36:52 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/23 16:10:12 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:33:10 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ typedef struct s_mini
 	void	*ground;
 	void	*walls;
 	void	*coins;
-	void	*closedexit;
-	void	*openexit;
+	void	*boatexit;
 	int		movs;
 }	t_mini;
 
@@ -62,6 +61,7 @@ typedef struct s_all
 }	t_all;
 
 char	**ft_sl_split(char *s, char c);
+char	*ft_sl_strjoin(char *s1, char *s2);
 
 void	check_argv(int argc, char **argv);
 int		ft_get_nbr_line(char *argv);
@@ -94,7 +94,7 @@ void	ft_sprites(t_all *all);
 void	wall(t_all *all);
 void	ground(t_all *all);
 void	player(t_all *all);
-void	door(t_all *all);
+void	boatexit(t_all *all);
 void	coins(t_all *all);
 
 void	ft_error(char *str);
