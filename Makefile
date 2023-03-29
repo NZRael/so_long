@@ -27,13 +27,18 @@ bonus :
 clean :
 	@rm -f $(OBJS)
 	@$(MAKE) clean -C ./libft
-	@$(MAKE) clean -C ./so_long_bonus
-
 fclean : clean
 	@rm -f ${NAME}
 	@$(MAKE) fclean -C ./libft
-	@$(MAKE) fclean -C ./so_long_bonus
 
 re : fclean all
 
-.PHONY : all make clean fclean re
+cleanbonus :
+	@$(MAKE) clean -C ./so_long_bonus
+
+fcleanbonus :
+	@$(MAKE) fclean -C ./so_long_bonus
+
+rebonus : fcleanbonus bonus
+
+.PHONY : all make clean fclean re cleanbonus fcleanbonus rebonus
