@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 12:30:27 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/24 16:33:36 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:32:22 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_argv(int argc, char **argv)
 	char	*ber;
 
 	if (argc != 2)
-		ft_error("Too many argument for argc\n");
+		ft_error("Expected 2 arguments for argc\n");
 	ft_check_mapfile(argv[1]);
 	start = ft_strlen(argv[1]) - 4;
 	ber = ft_substr(argv[1], start, 4);

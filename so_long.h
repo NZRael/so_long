@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:36:52 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/24 16:33:10 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:34:32 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ typedef struct s_all
 	t_mini	mini;
 	t_data	data;
 }	t_all;
-
-char	**ft_sl_split(char *s, char c);
-char	*ft_sl_strjoin(char *s1, char *s2);
 
 void	check_argv(int argc, char **argv);
 int		ft_get_nbr_line(char *argv);
