@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:16:09 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/29 10:45:23 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:15:49 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_find_exit(t_all *all)
 		all->xexit = 1;
 		while (all->xexit < all->xsize - 1)
 		{
-			if (all->map[all->yexit][all->xexit] == 'P')
+			if (all->map[all->yexit][all->xexit] == 'E')
 				return ;
 			all->xexit++;
 		}

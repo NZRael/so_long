@@ -9,6 +9,7 @@ SRCS = so_long.c check_argv.c ft_verif_map.c \
 SRCS_B = ./so_long_bonus/so_long_bonus.c ./so_long_bonus/check_argv.c ./so_long_bonus/ft_verif_map.c \
 		./so_long_bonus/ft_verif_elem.c ./so_long_bonus/ft_go_to_exit.c ./so_long_bonus/ft_enemy.c \
 		./so_long_bonus/ft_keyboard.c ./so_long_bonus/ft_show_map.c ./so_long_bonus/ft_images_utils.c \
+		./so_long_bonus/ft_data_images.c \
 		./so_long_bonus/get_next_line/get_next_line.c ./so_long_bonus/get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}

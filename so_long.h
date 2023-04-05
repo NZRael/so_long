@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:36:52 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/29 12:34:32 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:39:31 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ void	ft_count_elem(t_all *all);
 void	ft_go_to_exit(t_all *all);
 void	ft_find_player(t_all *all);
 void	ft_find_exit(t_all *all);
-void	ft_verif_game(t_all *all);
+void	ft_if_exit(t_all *all, int x, int y);
+void	ft_if_players(t_all *all, int x, int y);
+void	ft_verif_coins(t_all *all);
 
 int		ft_keyboard(int key, t_all *all);
 void	up(t_all *all);

@@ -6,41 +6,55 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:55:02 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/24 15:59:36 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:39:25 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_if_players(t_all *all, int x, int y)
+void	ft_if_players(t_all *all, int x, int y)
 {
-	if (all->tmp[y][x] != '0' && all->tmp[y][x] != 'P'
-	&& all->tmp[y][x] != 'C' && all->tmp[y][x] != 'E')
+	if (all->tmp[y][x] != '0' && all->tmp[y][x] != 'C'
+	&& all->tmp[y][x] != 'P')
 		return ;
-	all->tmp[y][x] = 'X';
+	all->tmp[y][x] = 'F';
 	ft_if_players(all, x + 1, y);
 	ft_if_players(all, x - 1, y);
-	ft_if_players(all, x, y - 1);
 	ft_if_players(all, x, y + 1);
+	ft_if_players(all, x, y - 1);
 	return ;
 }
 
-void	ft_verif_game(t_all *all)
+void	ft_if_exit(t_all *all, int x, int y)
+{
+	if (all->tmp[y][x] != '0' && all->tmp[y][x] != 'F'
+	&& all->tmp[y][x] != 'E')
+		return ;
+	all->tmp[y][x] = 'I';
+	ft_if_exit(all, x + 1, y);
+	ft_if_exit(all, x - 1, y);
+	ft_if_exit(all, x, y + 1);
+	ft_if_exit(all, x, y - 1);
+	return ;
+}
+
+void	ft_verif_coins(t_all *all)
 {
 	int	x;
 	int	y;
 
 	ft_if_players(all, all->xplayer, all->yplayer);
+	ft_if_exit(all, all->xplayer, all->yplayer);
 	y = 1;
 	while (all->tmp[y])
 	{
 		x = 1;
 		while (all->tmp[y][x])
 		{
-			if (all->tmp[y][x] == 'E')
-				ft_error("Player can't reach exit.\n");
 			if (all->tmp[y][x] == 'C')
 				ft_error("All collectibles can't be picked up\n");
+			if (all->tmp[y][x] == 'E')
+				ft_error("Player can't reach exit.\n");
 			x++;
 		}
 		y++;
@@ -59,5 +73,5 @@ void	ft_go_to_exit(t_all *all)
 		i++;
 	}
 	all->tmp[i] = NULL;
-	ft_verif_game(all);
+	ft_verif_coins(all);
 }
