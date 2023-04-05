@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:36:52 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/31 16:04:48 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:28:57 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_mini
 	void	*coins[2];
 	void	*boatexit;
 	void	*ennemy[2];
+	void	*game_over;
 	int		movs;
 }	t_mini;
 
@@ -89,6 +90,7 @@ void	ft_count_elem(t_all *all);
 void	ft_go_to_exit(t_all *all);
 void	ft_find_player(t_all *all);
 void	ft_find_exit(t_all *all);
+void	ft_if_exit(t_all *all, int x, int y);
 void	ft_verif_game(t_all *all);
 
 int		ft_keyboard(int key, t_all *all);
@@ -107,12 +109,15 @@ void	boatexit(t_all *all);
 void	coins(t_all *all);
 
 int		ft_update(t_all *all);
+void	ft_update_coin(t_all *all);
 void	ft_data(t_all *all);
 
 void	ft_init_enemy(t_all *all);
 void	ft_move_enemy(t_all *all);
 void	enemy(t_all *all);
 int		ft_is_collision(int x, int y, t_all *all);
+int		ft_frame_enemy(t_all *all);
+void	ft_die(t_all *all);
 
 void	ft_error(char *str);
 int		quit(t_all *all);

@@ -6,60 +6,18 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:05:27 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/31 16:04:15 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/04 11:09:33 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_sprites(t_all *all)
-{
-	int	x;
-	int	y;
-
-	ft_data(all);
-	all->mini.walls = mlx_xpm_file_to_image(all->mini.mlx,
-			"so_long_bonus/textures/waterwalls.xpm", &x, &y);
-	all->mini.ground = mlx_xpm_file_to_image(all->mini.mlx,
-			"so_long_bonus/textures/sand.xpm", &x, &y);
-	all->mini.coins[0] = mlx_xpm_file_to_image(all->mini.mlx,
-			"so_long_bonus/textures/coin.xpm", &x, &y);
-	all->mini.coins[1] = mlx_xpm_file_to_image(all->mini.mlx,
-			"so_long_bonus/textures/coinup.xpm", &x, &y);
-	all->mini.boatexit = mlx_xpm_file_to_image(all->mini.mlx,
-			"so_long_bonus/textures/boatexit.xpm", &x, &y);
-	if (!all->mini.walls || !all->mini.ground ||!all->mini.coins[0]
-		|| !all->mini.coins[1] || !all->mini.boatexit)
-		ft_error("Invalid images\n");
-}
-
-void	ft_data(t_all *all)
-{
-	int	x;
-	int	y;
-
-	all->mini.player[0] = mlx_xpm_file_to_image(
-			all->mini.mlx, "so_long_bonus/textures/luffyup.xpm", &x, &y);
-	all->mini.player[1] = mlx_xpm_file_to_image(
-			all->mini.mlx, "so_long_bonus/textures/luffyright.xpm", &x, &y);
-	all->mini.player[2] = mlx_xpm_file_to_image(
-			all->mini.mlx, "so_long_bonus/textures/luffydown.xpm", &x, &y);
-	all->mini.player[3] = mlx_xpm_file_to_image(
-			all->mini.mlx, "so_long_bonus/textures/luffyleft.xpm", &x, &y);
-	if (!all->mini.player[0] || !all->mini.player[1] || !all->mini.player[2]
-		|| !all->mini.player[3])
-		ft_error("Invalid images\n");
-}
-
-int	ft_update(t_all *all)
+void	ft_update_coin(t_all *all)
 {
 	static int	frame = 0;
-	static int	time = 0;
 
 	frame++;
-	time++;
-	ft_show_map(all);
-	if (frame >= 35)
+	if (frame >= 30)
 	{
 		if (all->coin == 0)
 			all->coin = 1;
@@ -67,10 +25,40 @@ int	ft_update(t_all *all)
 			all->coin = 0;
 		frame = 0;
 	}
-	if (time >= 10)
+	return ;
+}
+
+int	ft_frame_enemy(t_all *all)
+{
+	static int	frame = 0;
+
+	frame++;
+	if (frame >= 1)
+	{
+		ft_die(all);
+		frame = 0;
+	}
+	return (0);
+}
+
+int	ft_update(t_all *all)
+{
+	static int	time = 0;
+	static int	sec = 0;
+
+	time++;
+	sec++;
+	ft_show_map(all);
+	ft_update_coin(all);
+	if (time >= 8)
 	{
 		ft_move_enemy(all);
 		time = 0;
+	}
+	if (sec >= 1)
+	{
+		ft_die(all);
+		sec = 0;
 	}
 	return (0);
 }

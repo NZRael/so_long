@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:16:09 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/31 15:59:36 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:29:44 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_find_exit(t_all *all)
 		all->xexit = 1;
 		while (all->xexit < all->xsize - 1)
 		{
-			if (all->map[all->yexit][all->xexit] == 'P')
+			if (all->map[all->yexit][all->xexit] == 'E')
 				return ;
 			all->xexit++;
 		}
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	all.mini.mlx_win = mlx_new_window(all.mini.mlx,
 			((all.xsize - 1) * 60), (all.ysize * 60), "so_long");
 	ft_init_enemy(&all);
-	mlx_hook(all.mini.mlx_win, 2, 0, ft_keyboard, &all);
+	mlx_key_hook(all.mini.mlx_win, ft_keyboard, &all);
 	ft_show_map(&all);
 	mlx_loop_hook(all.mini.mlx, ft_update, &all);
 	mlx_hook(all.mini.mlx_win, 17, 0, (int (*)())quit, &all);

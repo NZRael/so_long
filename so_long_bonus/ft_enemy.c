@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:55:35 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/31 16:10:45 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/03 14:52:30 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,22 @@ int	ft_is_collision(int x, int y, t_all *all)
 		else
 				all->enemy.dire = 0;
 		return (1);
-		}
+	}
 	return (0);
+}
+
+void	ft_die(t_all *all)
+{
+	if (all->map[all->enemy.ypos / 60][all->enemy.xpos / 60] == 'P')
+	{
+		mlx_clear_window(all->mini.mlx, all->mini.mlx_win);
+		mlx_put_image_to_window(all->mini.mlx, all->mini.mlx_win,
+			all->mini.game_over, ((all->xsize) / 3) * 60,
+			((all->ysize) / 3) * 60);
+		mlx_do_sync(all->mini.mlx);
+		sleep(2);
+		exit(-1);
+	}
 }
 
 void	ft_move_enemy(t_all *all)
@@ -49,16 +63,12 @@ void	ft_move_enemy(t_all *all)
 	int	new_xpos;
 	int	new_ypos;
 
-	if (all->map[all->enemy.ypos / 60][all->enemy.xpos / 60] == 'P')
-		exit(-1);
 	new_xpos = all->enemy.xpos;
 	new_ypos = all->enemy.ypos;
 	if (all->enemy.dire == 0)
 		new_xpos += 60;
 	if (all->enemy.dire == 1)
 		new_xpos -= 60;
-	if (all->map[new_ypos / 60][new_xpos / 60] == 'P')
-		exit(-1);
 	if (ft_is_collision(new_xpos / 60, new_ypos / 60, all) == 0)
 		all->enemy.xpos = new_xpos;
 	enemy(all);
