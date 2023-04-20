@@ -1,6 +1,6 @@
 GCC = gcc -Wall -Wextra -Werror
 HEAD = -I .so_long.h
-HEAD = -I .so_long_bonus/so_long_bonus.h
+HEAD_B = -I .so_long_bonus/so_long_bonus.h
 MAKE = make
 SRCS = so_long.c check_argv.c ft_verif_map.c \
 		ft_verif_elem.c ft_go_to_exit.c \
@@ -12,7 +12,7 @@ SRCS_B = ./so_long_bonus/so_long_bonus.c ./so_long_bonus/check_argv.c ./so_long_
 		./so_long_bonus/ft_data_images.c \
 		./so_long_bonus/get_next_line/get_next_line.c ./so_long_bonus/get_next_line/get_next_line_utils.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS:%.c=%.o}
 OBJS_B = ${SRCS_B:.c=.o}
 
 NAME = so_long
@@ -20,12 +20,15 @@ NAME_B = so_longbonus
 
 all : $(NAME)
 
-$(NAME) :
+$(NAME) : ${OBJS}
 	@${MAKE} -C ./libft
-	@$(GCC) $(HEAD) ${SRCS} -g -L. -lmlx -framework AppKit -framework OpenGL -L ./libft -lft -o ${NAME}
+	@$(GCC) $(HEAD) ${OBJS} -L. -lmlx -framework AppKit -framework OpenGL -L ./libft -lft -o ${NAME}
+
+%.o : %.c
+	@$(GCC) $(HEAD) -c $< -o $@
 
 clean :
-	@rm -f $(OBJS)
+	@rm -f ${OBJS}
 	@$(MAKE) clean -C ./libft
 
 fclean : clean
@@ -36,10 +39,10 @@ re : fclean all
 
 bonus :
 	@${MAKE} -C ./so_long_bonus/libft
-	@$(GCC) $(HEAD_B) ${SRCS_B} -g -L. -lmlx -framework AppKit -framework OpenGL -L ./so_long_bonus/libft -lft -o ${NAME_B}
+	@$(GCC) $(HEAD_B) ${SRCS_B} -L. -lmlx -framework AppKit -framework OpenGL -L ./so_long_bonus/libft -lft -o ${NAME_B}
 
 cleanbonus :
-	@rm -f $(OBJS)
+	@rm -f $(OBJS_B)
 	@$(MAKE) clean -C ./so_long_bonus/libft
 
 fcleanbonus :
@@ -48,4 +51,4 @@ fcleanbonus :
 
 rebonus : fcleanbonus bonus
 
-.PHONY : all make clean fclean re cleanbonus fcleanbonus rebonus
+.PHONY : all make clean fclean re bonus cleanbonus fcleanbonus rebonus

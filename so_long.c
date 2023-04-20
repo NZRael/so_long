@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:16:09 by sboetti           #+#    #+#             */
-/*   Updated: 2023/04/05 11:15:49 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:55:45 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	main(int argc, char **argv)
 	ft_find_player(&all);
 	ft_find_exit(&all);
 	ft_go_to_exit(&all);
+	all.mini.movs = 1;
 	all.mini.mlx = mlx_init();
 	all.mini.mlx_win = mlx_new_window(all.mini.mlx,
 			((all.xsize - 1) * 60), (all.ysize * 60), "so_long");

@@ -6,7 +6,7 @@
 /*   By: sboetti <sboetti@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:02:00 by sboetti           #+#    #+#             */
-/*   Updated: 2023/03/24 16:02:59 by sboetti          ###   ########.fr       */
+/*   Updated: 2023/04/17 09:32:37 by sboetti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_verif_mapwalls(t_all *all)
 	while (i < all->ysize - 1)
 	{
 		if (all->map[i][0] != '1'
-		&& all->map[i][all->xsize - 1] != '1')
+		|| all->map[i][all->xsize - 2] != '1')
 			ft_error("Map's walls invalid\n");
 		i++;
 	}
